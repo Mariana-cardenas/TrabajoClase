@@ -1,9 +1,6 @@
 
 def sumar(numeros):
-    resultado = 0
-    for numero in numeros:
-        resultado += numero
-    return resultado
+    return sum(numeros)
 
 
 def restar(numeros):
@@ -29,15 +26,24 @@ def dividir(numeros):
     return resultado
 
 
-print("=== CALCULADORA ===")
-print("1. Sumar")
-print("2. Restar")
-print("3. Multiplicar")
-print("4. Dividir")
+while True:
+    print("\n=== CALCULADORA ===")
+    print("1. Sumar")
+    print("2. Restar")
+    print("3. Multiplicar")
+    print("4. Dividir")
+    print("5. Salir")
 
-opcion = input("Selecciona una opción: ")
+    opcion = input("Selecciona una opción: ")
 
-if opcion in ("1", "2", "3", "4"):
+    if opcion == "5":
+        print("Gracias por utilizar la calculadora.")
+        break
+
+    if opcion not in ("1", "2", "3", "4"):
+        print("Opción no válida. Intenta nuevamente.")
+        continue
+
     entrada = input("Ingresa los números separados por comas: ")
 
     try:
@@ -45,16 +51,18 @@ if opcion in ("1", "2", "3", "4"):
 
         if len(numeros) < 2:
             print("Debes ingresar al menos dos números.")
-        elif opcion == "1":
-            print("Resultado:", sumar(numeros))
+            continue
+
+        if opcion == "1":
+            resultado = sumar(numeros)
         elif opcion == "2":
-            print("Resultado:", restar(numeros))
+            resultado = restar(numeros)
         elif opcion == "3":
-            print("Resultado:", multiplicar(numeros))
+            resultado = multiplicar(numeros)
         else:
-            print("Resultado:", dividir(numeros))
+            resultado = dividir(numeros)
+
+        print("Resultado:", resultado)
 
     except ValueError:
-        print("Error: ingresa únicamente números separados por comas.")
-else:
-    print("Opción no válida.")
+        print("Error: ingresa números válidos separados por comas.")
